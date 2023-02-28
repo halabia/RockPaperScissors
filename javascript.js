@@ -1,3 +1,5 @@
+RPS = () => {
+
 // play a 5 game round
 for (let i = 0; i < 5; i++) {
     const choices = ["rock", "paper", "scissors"]
@@ -39,4 +41,5 @@ if (x<y) {
 }
 if (x==y) {
         console.log("You draw the game")
+}
 }
