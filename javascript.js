@@ -6,30 +6,42 @@ playRound = (decision) => {
 // play a 5 game round
     const choices = ["rock", "paper", "scissors"]
     
-    // player's decision
-    // let decision = prompt("Please enter: 'rock','paper','scissors'").toLowerCase();;
-    // console.log(decision)
-    
+    // const container = document.querySelector('#container');  
+
     // computer's decision
     let getComputerChoice = choices[Math.floor(Math.random()*choices.length)];
-    console.log(getComputerChoice)
-
-    // initialize counters to 0 for the first round
-
+    const content3 = document.querySelector('#computer');  
+    content3.textContent = "The computer selected: " + getComputerChoice;
     
+    // console.log(getComputerChoice)
+
         if (decision == "rock" & getComputerChoice == "rock" || decision == "scissors" & getComputerChoice == "scissors" || decision == "paper" & getComputerChoice == "paper") {
-            console.log("Draw");
+            const content = document.querySelector('#round');  
+            content.textContent = "Draw";
         } else if (decision == "rock" & getComputerChoice == "scissors" || decision == "paper" & getComputerChoice == "rock" || decision == "scissors" & getComputerChoice == "paper" ) {
-            console.log("Win");
             x++
-            console.log("Your score is: ", x);
+            const content = document.querySelector('#round');  
+            content.textContent = "Win";
         } else if (decision == "rock" & getComputerChoice == "paper"|| decision == "paper" & getComputerChoice == "scissors" || decision == "scissors" & getComputerChoice == "rock" ) {
-            console.log("Lose");
             y++
-            console.log("Their score is: ",y)
+            const content = document.querySelector('#round');  
+            content.textContent = "Lose";
         }
+
+        const content2 = document.querySelector('#result');  
+        content2.textContent = "The scores are: " + x + " - " + y;
+        
+    // decide if player wins or loses the game based on total round wins
+    if (x == 5) {
+        console.log("You win the game")
+    }
+    else if (y == 5) {
+        console.log("You lose the game")
+    }
+        // container.appendChild(content)
     
 }
+
 const rockButton = document.querySelector('#rock');
 rockButton.addEventListener('click', function (e) {
     playRound("rock")
@@ -42,13 +54,4 @@ const paperButton = document.querySelector('#paper');
 paperButton.addEventListener('click', function (e) {
     playRound("paper")
 });
-// // decide if player wins or loses the game based on total round wins
-// if (x>y) {
-//         console.log("You win the game")
-// }
-// if (x<y) {
-//         console.log("You lose the game")
-// }
-// if (x==y) {
-//         console.log("You draw the game")
-// }
+
