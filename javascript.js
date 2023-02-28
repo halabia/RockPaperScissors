@@ -1,45 +1,59 @@
-RPS = () => {
+var x = 0;
+var y = 0;
 
-// play a 5 game round
-for (let i = 0; i < 5; i++) {
+playRound = (decision) => {
     const choices = ["rock", "paper", "scissors"]
-    
-    // player's decision
-    let decision = prompt("Please enter: 'rock','paper','scissors'").toLowerCase();;
-    console.log(decision)
     
     // computer's decision
     let getComputerChoice = choices[Math.floor(Math.random()*choices.length)];
-    console.log(getComputerChoice)
+    const content3 = document.querySelector('#computer');  
+    content3.textContent = "The computer selected: " + getComputerChoice;
 
-    // initialize counters to 0 for the first round
-    if (i == 0) {
-        var x = 0;
-        var y = 0;
-    }
-    else {
+        // different round outcomes
         if (decision == "rock" & getComputerChoice == "rock" || decision == "scissors" & getComputerChoice == "scissors" || decision == "paper" & getComputerChoice == "paper") {
-            console.log("Draw");
+            const content = document.querySelector('#round');  
+            content.textContent = "This round was a draw";
         } else if (decision == "rock" & getComputerChoice == "scissors" || decision == "paper" & getComputerChoice == "rock" || decision == "scissors" & getComputerChoice == "paper" ) {
-            console.log("Win");
             x++
-            console.log("Your score is: ", x);
+            const content = document.querySelector('#round');  
+            content.textContent = "You win this round";
         } else if (decision == "rock" & getComputerChoice == "paper"|| decision == "paper" & getComputerChoice == "scissors" || decision == "scissors" & getComputerChoice == "rock" ) {
-            console.log("Lose");
             y++
-            console.log("Their score is: ",y)
+            const content = document.querySelector('#round');  
+            content.textContent = "You lose this round";
         }
-    }
-    }
 
-// decide if player wins or loses the game based on total round wins
-if (x>y) {
-        console.log("You win the game")
+        const content2 = document.querySelector('#result');  
+        content2.textContent = "The scores are: " + x + " - " + y;
+        
+    // decide if player wins or loses the game based on total round wins
+    if (x == 5) {
+        const content = document.querySelector('#game');  
+        content.textContent = "You won the game";
+        content.setAttribute('style', 'color: white; background: green;'); 
+        x = 0;
+        y = 0;
+    }
+    else if (y == 5) {
+        const content = document.querySelector('#game');  
+        content.textContent = "You lost the game";
+        content.setAttribute('style', 'color: white; background: red;'); 
+        x = 0;
+        y = 0;
+    }
 }
-if (x<y) {
-        console.log("You lose the game")
-}
-if (x==y) {
-        console.log("You draw the game")
-}
-}
+
+// setup scenarios for each button press
+const rockButton = document.querySelector('#rock');
+rockButton.addEventListener('click', function (e) {
+    playRound("rock")
+  });
+const scissorsButton = document.querySelector('#scissors');
+scissorsButton.addEventListener('click', function (e) {
+    playRound("scissors")
+});
+const paperButton = document.querySelector('#paper');
+paperButton.addEventListener('click', function (e) {
+    playRound("paper")
+});
+
